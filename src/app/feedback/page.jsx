@@ -3,8 +3,10 @@
 import { CreateClient } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import { feedback } from "../actions/action.feedback";
+import { useRouter } from "next/navigation";
 
 export default function Feedback() {
+   const router = useRouter()
     
   const [name,setName] = useState('')
 
@@ -24,6 +26,7 @@ export default function Feedback() {
          if(data){
           setName(data.name)
          }
+         if(error) return
        };
        getUser();
       },[]
@@ -56,7 +59,7 @@ export default function Feedback() {
             type="text"
             name="name"
             value={name}
-            readOnly
+            onChange={(e) => setName(e.target.value)}
             required
             className="w-full h-9 mb-4 rounded-lg border border-cyan-300 px-4 focus:outline-none focus:ring-2 focus:ring-cyan-500 required"
           />
@@ -69,15 +72,25 @@ export default function Feedback() {
             placeholder="Anything in your mind? Just be KIND...."
             required
             onChange={(e) =>setName(e.target.value)}
-            className="w-full h-60 mb-4 px-4 resize-none rounded-lg border border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="w-full h-[5rem] mb-4 px-4 resize-none rounded-lg border border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-500"
           />
+           <div className="flex gap-4 pt-4">
+            <button
+              type="submit"
+              className="flex-1 bg-[#0891b2] mt-2 mb-4  text-cyan-100 font-bold text-xl py-3 rounded-lg hover:bg-[#0e7490]"
+            >
+              Send
+            </button>
 
-          <button
-            type="submit"
-            className="w-[20rem] h-11 rounded-full ml-15 text-xl font-bold text-slate-900 bg-gradient-to-r from-cyan-600 via-cyan-400 to-cyan-600 hover:from-indigo-500 hover:to-indigo-500 transition transform hover:-translate-y-1 shadow-lg"
-          >
-            Send
-          </button>
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="flex-1 bg-[#cffafe] py-3 text-cyan-900 font-bold text-xl mt-2 mb-4 rounded-lg hover:bg-[#a5f3fc]"
+            >
+              Cancel
+            </button>
+            </div>
+
         </form>
 
       </div>

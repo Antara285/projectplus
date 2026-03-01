@@ -1,5 +1,4 @@
 "use client"
-
 import { CreateClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -92,9 +91,7 @@ const [confirmpassword,setConfirmPassword] = useState('')
             Sign Up
           </button>
           <h2 className="text-cyan-700 text-md font-semibold pt-4 text-center" > Already have an account ? <Link href={"/login"} >Login</Link></h2>
-
         </form>
-
       </div>
     </div>
   );

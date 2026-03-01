@@ -142,7 +142,7 @@ setProfile(profileData);
               </button>
                <button
            onClick={() =>
-           router.push(`/admin/dashboard/projects/${project.id}/feedback`)
+           router.push('/feedback')
            }
            className="ml-[5rem] bg-gradient-to-r from-[#6ee7b7] via-[#a7f3d0] to-[#6ee7b7] hover:bg-gradient-to-r hover:from-[#2dd4bf] hover:via-[#6ee7b7] hover:to-[#2dd4bf] text-[#042f2e] px-4 py-2 rounded-full text-md font-semibold transition duration-300"
            >

@@ -35,7 +35,7 @@ export default function MemberDashboard() {
       // Get project through project_members table
       const { data: memberData } = await supabase
         .from("project_members")
-        .select("project_id, projects(*)")
+        .select("project_id")
         .eq("user_id", user.id)
         .single();
 
