@@ -66,7 +66,7 @@ export default function AdminDashboard() {
           {/* Right Side - Logout Button */}
           <button
             onClick={async () => {
-            const supabase = CreateClient();
+            const supabase = createClient();
             await supabase.auth.signOut();
             router.push("/login");
             }}

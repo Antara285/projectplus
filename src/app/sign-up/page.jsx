@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 export default function SignUp() {
   const router = useRouter()
   const supabase = createClient()
@@ -11,9 +12,10 @@ const [password,setPassword] = useState('')
 const [error,setError] = useState('')
 const [confirmpassword,setConfirmPassword] = useState('')
 
-  async function handleSignUp() {
+  async function handleSignUp(e) {
+        e.preventDefault()
+        setError("")
     try{
-      setError('')
       const {data,error:signUpError}=await supabase.auth.signUp({email,password})
       if(signUpError){
         setError(`❌ ${signUpError.message}`)
@@ -43,10 +45,7 @@ const [confirmpassword,setConfirmPassword] = useState('')
       {/* Center Form */}
       <div className="flex justify-center items-center min-h-screen">
 
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          handleSignUp
-        }}
+        <form onSubmit={handleSignUp}
           
             className="bg-white text-cyan-900 rounded-3xl shadow-xl mt-10 p-6 w-[90%] max-w-md md:mt-[5vh] md:max-w-lg lg:mt-10">
 
