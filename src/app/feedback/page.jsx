@@ -1,6 +1,6 @@
 'use client'
 
-import { CreateClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import { feedback } from "../actions/action.feedback";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,7 @@ export default function Feedback() {
   useEffect(
     () =>{
        async function getUser() {
-         const supabase = CreateClient();
+         const supabase = createClient();
         const {data:{user}} = await supabase.auth.getUser()
         if(!user){
           return

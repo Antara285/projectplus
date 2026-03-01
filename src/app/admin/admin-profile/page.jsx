@@ -1,6 +1,6 @@
 'use client'
 
-import { CreateClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import { insertProfile } from "@/app/actions/action.profile";
 
@@ -13,7 +13,7 @@ export default function AdminProfile() {
   useEffect(
     () =>{
        async function getUser() {
-         const supabase = CreateClient();
+         const supabase = createClient();
          const {data :{user}} = await supabase.auth.getUser();
          if(user){
           setEmail(user.email)

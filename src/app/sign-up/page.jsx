@@ -1,11 +1,11 @@
 "use client"
-import { CreateClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 export default function SignUp() {
   const router = useRouter()
-  const supabase = CreateClient()
+  const supabase = createClient()
 const [email,setEmail] = useState('')
 const [password,setPassword] = useState('')
 const [error,setError] = useState('')

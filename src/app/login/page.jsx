@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { useState } from "react";
-import { CreateClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 
 export default function SignIn() {
    const router = useRouter()
-   const supabase = CreateClient();
+   const supabase = createClient();
    const [email,setEmail] = useState('')
    const [password,setPassword] = useState('')
    const [error,setError] = useState('')
@@ -16,7 +16,7 @@ export default function SignIn() {
  async function handlesignin(e) {
   e.preventDefault();
   setError("");
-
+  
   const { data, error: signInError } =
     await supabase.auth.signInWithPassword({
       email,
@@ -30,7 +30,7 @@ export default function SignIn() {
 
   const user = data.user;
 
-  const { data: profile, error: profileError } = await supabase
+  const { data: profile} = await supabase
     .from("profile")
     .select("role")
     .eq("user_id", user.id)
@@ -42,7 +42,6 @@ export default function SignIn() {
     role = profile.role;
   }
 
-  console.log("User role:", role);
 
   if (role === "admin") {
     router.push("/admin/dashboard");

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { CreateClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 export default function AdminDashboard() {
   const router = useRouter()
@@ -11,7 +11,7 @@ export default function AdminDashboard() {
 
   useEffect(()=>{
     const admin = async () => {
-      const supabase =  CreateClient()
+      const supabase =  createClient()
        const {data:{user}} = await supabase.auth.getUser()
        
        if(!user) return

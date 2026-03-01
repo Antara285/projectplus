@@ -27,6 +27,6 @@ export async function addadmin(formdata) {
     email:data.user.email,
   })
 
-  redirect('/members/dashboard')
+  redirect('/members/member-profile')
 }
 
